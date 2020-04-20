@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <ThingDef ParentName="BuildingBase">
+        <defName>AlliesSpot</defName>
+        <label>allies spot</label>
+		<thingClass>AlliesSpot.AlliesSpot</thingClass>
+        <description>Designates a spot for staying allies or allies drop pods.</description>
+        <graphicData>
+            <texPath>Things/Building/Misc/PartySpot</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <color>(50,50,250)</color>
+        </graphicData>
+        <altitudeLayer>FloorEmplacement</altitudeLayer>
+        <statBases>
+            <Flammability>0.0</Flammability>
+            <WorkToBuild>0</WorkToBuild>
+        </statBases>
+        <rotatable>false</rotatable>
+        <scatterableOnMapGen>false</scatterableOnMapGen>
+        <useHitPoints>False</useHitPoints>
+        <designationCategory>Misc</designationCategory>
+        <passability>Standable</passability>
+        <building>
+            <sowTag>SupportPlantsOnly</sowTag>
+            <canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
+        </building>
+		<tickerType>Normal</tickerType>
+    </ThingDef>
+</Defs>
