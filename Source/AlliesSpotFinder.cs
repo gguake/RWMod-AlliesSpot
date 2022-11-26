@@ -9,7 +9,7 @@ namespace AlliesSpot
     {
         public static bool TryFindAlliesSpot(Map map, out IntVec3 result)
         {
-            if (map == null)
+            if (map?.listerBuildings?.allBuildingsColonist == null)
             {
                 result = IntVec3.Invalid;
                 return false;
@@ -37,7 +37,7 @@ namespace AlliesSpot
 
         public static bool TryFindAlliesSpot(IntVec3 root, Map map, Pawn searcher, out IntVec3 result)
         {
-            if (map == null)
+            if (map?.listerBuildings?.allBuildingsColonist == null)
             {
                 result = IntVec3.Invalid;
                 return false;
