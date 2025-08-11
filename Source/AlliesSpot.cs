@@ -9,35 +9,24 @@ namespace AlliesSpot
 {
     public class AlliesSpot : Building
     {
-        private bool ticked = false;
-
-        public AlliesSpot()
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
-            if (Current.Game.CurrentMap != null)
+            base.SpawnSetup(map, respawningAfterLoad);
+
+            foreach (Building building in map.listerBuildings.allBuildingsColonist.FindAll(x => x.def == AlliesSpotDefOf.AlliesSpot))
             {
-                foreach (Building building in Current.Game.CurrentMap.listerBuildings.allBuildingsColonist.FindAll(x => x.def == AlliesSpotDefOf.AlliesSpot))
-                {
-                    building.Destroy(DestroyMode.Vanish);
-                }
+                building.Destroy(DestroyMode.Vanish);
             }
-        }
 
-        public override void Tick()
-        {
-            if (!ticked)
+            foreach (var lord in Current.Game.CurrentMap.lordManager.lords.FindAll(x => x.LordJob is LordJob_AssistColony))
             {
-                foreach (var lord in Current.Game.CurrentMap.lordManager.lords.FindAll(x => x.LordJob is LordJob_AssistColony))
+                if (lord.CurLordToil is LordToil_HuntEnemies)
                 {
-                    if (lord.CurLordToil is LordToil_HuntEnemies)
-                    {
-                        var data = fieldInfoData.GetValue(lord.CurLordToil) as LordToilData_HuntEnemies;
-                        data.fallbackLocation = this.Position;
+                    var data = fieldInfoData.GetValue(lord.CurLordToil) as LordToilData_HuntEnemies;
+                    data.fallbackLocation = this.Position;
 
-                        lord.CurLordToil.UpdateAllDuties();
-                    }
+                    lord.CurLordToil.UpdateAllDuties();
                 }
-
-                ticked = true;
             }
         }
 
